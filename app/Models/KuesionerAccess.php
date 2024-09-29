@@ -5,13 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ModuleWithRole extends Model
+class KuesionerAccess extends Model
 {
     use HasFactory;
-
-
-    protected $fillable = [
-        'module_id',
-        'role_id',
-    ];
 }

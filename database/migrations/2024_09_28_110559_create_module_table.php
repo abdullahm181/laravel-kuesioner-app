@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('module', function (Blueprint $table) {
+        Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('ModuleName');
-            $table->string('ModuleGroup');
-            $table->string('ModuleAction');
+            $table->string('ModuleGroup')->nullable();
+            $table->string('ModuleSubGroup')->nullable();
+            $table->string('ModuleAction')->nullable();
             $table->string('ModuleController');
+            $table->integer('ModuleOrder');
+            $table->string('ModuleIcon')->nullable();
             $table->timestamps();
         });
     }

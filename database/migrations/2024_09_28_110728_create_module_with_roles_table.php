@@ -14,8 +14,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('module_with_roles', function (Blueprint $table) {
-            $table->foreignIdFor(Module::class)->constrained();
-            $table->foreignIdFor(Role::class)->constrained();
+            $table->id();
+            $table->foreignIdFor(Module::class)->constrained()->unique();
+            $table->foreignIdFor(Role::class)->constrained()->unique();
             $table->timestamps();
         });
     }

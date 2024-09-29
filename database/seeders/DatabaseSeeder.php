@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\KuesionerQuestionType;
+use App\Models\Module;
+use App\Models\ModuleWithRole;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -44,17 +47,163 @@ class DatabaseSeeder extends Seeder
                 'name'=>'amin.abdullah',
                 'email'=>'amin.abdullah@gmail.com',
                 'role_id'=>2,
-                'password'=>bcrypt('amin.abdullah')
+                'password'=>bcrypt('amin.abdullah'),
+                'isDeleted'=>false,
+                'isDisable'=>false,
             ],[
                 'name'=>'amin.user',
                 'email'=>'amin.user@gmail.com',
                 'role_id'=>1,
-                'password'=>bcrypt('amin.user')
+                'password'=>bcrypt('amin.user'),
+                'isDeleted'=>false,
+                'isDisable'=>false,
             ]
         ];
         
         foreach($UserData as $key=>$val){
             User::create($val);
+
+        }
+        ///MODULE 
+        $ModuleData=[
+            [
+                'ModuleName'=>'Home',
+                'ModuleGroup'=>null,
+                'ModuleSubGroup'=>null,
+                'ModuleAction'=>null,
+                'ModuleController'=>'home',
+                'ModuleOrder'=>1,
+                'ModuleIcon'=>'fas fa-fw fa-tachometer-alt'
+            ],[
+                'ModuleName'=>'Roles',
+                'ModuleGroup'=>'Administrator',
+                'ModuleSubGroup'=>null,
+                'ModuleAction'=>null,
+                'ModuleController'=>'Roles',
+                'ModuleOrder'=>2,
+                'ModuleIcon'=>'fas fa-briefcase'
+            ],[
+                'ModuleName'=>'Users',
+                'ModuleGroup'=>'Administrator',
+                'ModuleSubGroup'=>null,
+                'ModuleAction'=>null,
+                'ModuleController'=>'Users',
+                'ModuleOrder'=>3,
+                'ModuleIcon'=>'fas fa-users'
+            ]
+            ,[
+                'ModuleName'=>'Module Role Access',
+                'ModuleGroup'=>'Administrator',
+                'ModuleSubGroup'=>null,
+                'ModuleAction'=>null,
+                'ModuleController'=>'ModuleWithRole',
+                'ModuleOrder'=>4,
+                'ModuleIcon'=>'fas fa-cog'
+            ],[
+                'ModuleName'=>'Kuesioner',
+                'ModuleGroup'=>'Master',
+                'ModuleSubGroup'=>null,
+                'ModuleAction'=>null,
+                'ModuleController'=>'Kuesioner',
+                'ModuleOrder'=>5,
+                'ModuleIcon'=>'fas fa-task'
+            ],[
+                'ModuleName'=>'Kuesioner Response',
+                'ModuleGroup'=>'History',
+                'ModuleSubGroup'=>null,
+                'ModuleAction'=>null,
+                'ModuleController'=>'KuesionerResponse',
+                'ModuleOrder'=>6,
+                'ModuleIcon'=>'fas fa-history'
+            ]
+        ];
+        foreach($ModuleData as $key=>$val){
+            Module::create($val);
+
+        }
+        //ModuleWithRole
+        //----- ADMIN
+        $ADMIN=[
+            [
+                'module_id'=>1,
+                'role_id'=>2
+            ], [
+                'module_id'=>2,
+                'role_id'=>2
+            ], [
+                'module_id'=>3,
+                'role_id'=>2
+            ], [
+                'module_id'=>4,
+                'role_id'=>2
+            ], [
+                'module_id'=>5,
+                'role_id'=>2
+            ], [
+                'module_id'=>6,
+                'role_id'=>2
+            ]
+        ];
+        foreach($ADMIN as $key=>$val){
+            ModuleWithRole::create($val);
+
+        }
+        ///-- User
+        $USER=[
+            [
+                'module_id'=>1,
+                'role_id'=>1
+            ],[
+                'module_id'=>6,
+                'role_id'=>1
+            ]
+        ];
+        foreach($USER as $key=>$val){
+            ModuleWithRole::create($val);
+
+        }
+        //kuesioner_question_types
+        $kuesioner_question_types=[
+            [
+                'inputType'=>'input',
+                'type'=>'text',
+                'allowMultipleOption'=>false,
+                'isDeleted'=>false,
+            ],[
+                'inputType'=>'input',
+                'type'=>'number',
+                'allowMultipleOption'=>false,
+                'isDeleted'=>false,
+            ],[
+                'inputType'=>'input',
+                'type'=>'date',
+                'allowMultipleOption'=>false,
+                'isDeleted'=>false,
+            ],[
+                'inputType'=>'input',
+                'type'=>'email',
+                'allowMultipleOption'=>false,
+                'isDeleted'=>false,
+            ],[
+                'inputType'=>'select',
+                'type'=>'text',
+                'allowMultipleOption'=>false,
+                'isDeleted'=>false,
+            ],[
+                'inputType'=>'checkbox',
+                'type'=>'text',
+                'allowMultipleOption'=>true,
+                'isDeleted'=>false,
+            ],[
+                'inputType'=>'textarea',
+                'type'=>'text',
+                'allowMultipleOption'=>false,
+                'isDeleted'=>false,
+            ],
+        ];
+        
+        foreach($kuesioner_question_types as $key=>$val){
+            KuesionerQuestionType::create($val);
 
         }
     }

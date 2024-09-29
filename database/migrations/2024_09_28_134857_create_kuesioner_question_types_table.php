@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('kuesioner_question_types', function (Blueprint $table) {
             $table->id();
+            $table->string('inputType'); 
+            $table->string('type'); 
+            $table->boolean('allowMultipleOption');
+            $table->boolean('isDeleted'); 
+            
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable(); 
             $table->timestamps();
+
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

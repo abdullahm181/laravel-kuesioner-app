@@ -13,7 +13,30 @@ return new class extends Migration
     {
         Schema::create('kuesioner_questions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('kuesioner_id');
+            $table->unsignedBigInteger('kuesioner_section_id')->nullable();
+            $table->unsignedBigInteger('question_type_id');
+            $table->unsignedBigInteger('question_option_group_id')->nullable();
+            $table->string('questionText');
+            $table->string('questionSubText')->nullable();
+            $table->integer('questionOrder');
+            $table->boolean('aswareRequired'); 
+
+            $table->unsignedBigInteger('depedent_question_id')->nullable();
+            $table->unsignedBigInteger('depedent_question_option_id')->nullable();
+
+
+            $table->boolean('isDeleted'); 
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable(); 
             $table->timestamps();
+
+            $table->foreign('kuesioner_id')->references('id')->on('kuesioners');
+            $table->foreign('kuesioner_section_id')->references('id')->on('kuesioner_sections');
+            $table->foreign('question_type_id')->references('id')->on('kuesioner_question_types');
+            $table->foreign('question_option_group_id')->references('id')->on('kuesioner_question_option_groups');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

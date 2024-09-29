@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('kuesioner_answer_options', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('answer_id');
+            $table->unsignedBigInteger('question_option_id');
+
+            $table->boolean('isDeleted'); 
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable(); 
             $table->timestamps();
+
+            $table->foreign('question_option_id')->references('id')->on('kuesioner_question_options');
+            $table->foreign('answer_id')->references('id')->on('kuesioner_answers');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

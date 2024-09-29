@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -27,15 +29,30 @@ class AuthController extends Controller
             'password'=>$request->password,
         ];
         if(Auth::attempt($infologin)){
-            if(Auth::user()->role_id==1){
-                return redirect('home');
-            }elseif(Auth::user()->role_id==2){
-                return redirect('home/admin');
-            }
-           
-        }else{
-            return redirect('')->withErrors('Username dan password yang dimasukkan tidak sesuai')->withInput();
+            // if(Auth::user()->role_id==1){
+            //     return redirect('home');
+            // }elseif(Auth::user()->role_id==2){
+            //     return redirect('home/admin');
+            // }
+            return redirect('home');
         }
+        return redirect('')->withErrors('Username dan password yang dimasukkan tidak sesuai')->withInput();
+    }
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+        ]);
+ 
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' =>  Hash::make($request->password),
+        ]);
+ 
+        return redirect('/login')->with('success', 'Registration successful! Please log in.');
     }
 
     function logout(){

@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('kuesioner_sections', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('kuesioner_id');
+            $table->unsignedBigInteger('sectionName')->nullable();
+            $table->unsignedBigInteger('sectionSubName')->nullable();
+            
+            $table->boolean('isDeleted'); 
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable(); 
             $table->timestamps();
+
+            $table->foreign('kuesioner_id')->references('id')->on('kuesioners');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 
