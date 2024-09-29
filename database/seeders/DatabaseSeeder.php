@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
                 'ModuleName'=>'Home',
                 'ModuleGroup'=>null,
                 'ModuleSubGroup'=>null,
-                'ModuleAction'=>null,
+                'ModuleAction'=>'index',
                 'ModuleController'=>'home',
                 'ModuleOrder'=>1,
                 'ModuleIcon'=>'fas fa-fw fa-tachometer-alt'
@@ -78,16 +78,16 @@ class DatabaseSeeder extends Seeder
                 'ModuleName'=>'Roles',
                 'ModuleGroup'=>'Administrator',
                 'ModuleSubGroup'=>null,
-                'ModuleAction'=>null,
-                'ModuleController'=>'Roles',
+                'ModuleAction'=>'index',
+                'ModuleController'=>'role',
                 'ModuleOrder'=>2,
                 'ModuleIcon'=>'fas fa-briefcase'
             ],[
                 'ModuleName'=>'Users',
                 'ModuleGroup'=>'Administrator',
                 'ModuleSubGroup'=>null,
-                'ModuleAction'=>null,
-                'ModuleController'=>'Users',
+                'ModuleAction'=>'index',
+                'ModuleController'=>'users',
                 'ModuleOrder'=>3,
                 'ModuleIcon'=>'fas fa-users'
             ]
@@ -103,16 +103,16 @@ class DatabaseSeeder extends Seeder
                 'ModuleName'=>'Kuesioner',
                 'ModuleGroup'=>'Master',
                 'ModuleSubGroup'=>null,
-                'ModuleAction'=>null,
-                'ModuleController'=>'Kuesioner',
+                'ModuleAction'=>'index',
+                'ModuleController'=>'kuesioner',
                 'ModuleOrder'=>5,
                 'ModuleIcon'=>'fas fa-task'
             ],[
                 'ModuleName'=>'Kuesioner Response',
                 'ModuleGroup'=>'History',
                 'ModuleSubGroup'=>null,
-                'ModuleAction'=>null,
-                'ModuleController'=>'KuesionerResponse',
+                'ModuleAction'=>'index',
+                'ModuleController'=>'kuesionerresponse',
                 'ModuleOrder'=>6,
                 'ModuleIcon'=>'fas fa-history'
             ]
