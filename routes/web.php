@@ -25,3 +25,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/logout',[AuthController::class,'logout']);
 });
 
+Route::group(['middleware'=>'XSS', function() {
+    Route::get('/product', 'ProductController@index');
+}]);
