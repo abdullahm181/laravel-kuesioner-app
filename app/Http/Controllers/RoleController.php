@@ -94,6 +94,7 @@ class RoleController extends Controller
 
     public function destroy(string $id)
     {
+        ModuleWithRole::where('role_id',$id)->delete();
         Role::destroy($id);
         return response()->json(['status' => "success"]);
     }

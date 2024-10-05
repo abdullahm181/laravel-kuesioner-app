@@ -6,6 +6,7 @@ use App\Models\ModuleWithRole;
 use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -242,5 +243,72 @@ class AuthController extends Controller
             }
         }
         return $MoluleSideBar;
+    }
+
+    public function profile()
+    {
+        $dataUser = User::where('users.id',Auth::user()->id)->leftjoin('roles', function ($join){
+            $join->on('users.role_id', '=', 'roles.id');
+        })->select('users.id','users.name','users.email','users.role_id','users.isDeleted','users.isDisable','roles.name as role_name')->first();
+
+        return view('auth/profile', compact('dataUser'));
+    }
+    public function storeProfile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.Auth::user()->id,
+        ]);
+        $status = true;
+        $message = "";
+        DB::beginTransaction();
+        $data=null;
+        try {
+            User::findOrFail(Auth::user()->id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+   
+            DB::commit();
+        } catch (Exception $e) {
+
+            DB::rollback();
+            $status = false;
+            $message = $e->getMessage()."Line No : ". $e->getLine();
+        }
+        return response()->json(['status' => $status, 'message' => $message,'data'=>$data]);
+    }
+    public function changepassword()
+    {
+        return view('auth/changepassword');
+    }
+    public function storeNewPassword(Request $request)
+    {
+        $request->validate([
+            'oldpassword' => 'required|min:6',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        $status = true;
+        $message = "";
+        DB::beginTransaction();
+        $data=null;
+        try {
+            $currentPasswordStatus = Hash::check($request->oldpassword, auth()->user()->password);if($currentPasswordStatus){
+
+                User::findOrFail(Auth::user()->id)->update([
+                    'password' => Hash::make($request->password),
+                ]);
+    
+            }else{
+                throw new Exception('Current Password does not match with Old Password');
+            }       
+            DB::commit();
+        } catch (Exception $e) {
+
+            DB::rollback();
+            $status = false;
+            $message = $e->getMessage()."Line No : ". $e->getLine();
+        }
+        return response()->json(['status' => $status, 'message' => $message,'data'=>$data]);
     }
 }
