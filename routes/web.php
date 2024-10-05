@@ -32,14 +32,12 @@ Route::middleware(['guest'])->group(function(){
 });
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/home/index',[HomeController::class,'index'])->middleware('userAccessFilter');
-    Route::get('/home/admin',[HomeController::class,'admin'])->middleware('userAccessFilter:2');
+    Route::get('/home',[HomeController::class,'index']);
     Route::get('/logout',[AuthController::class,'logout']);
 
-    // Route::get('/', function () {
-    //     return view('/role/role');
-    // });
     Route::get('/role/index',[RoleController::class,'index'])->middleware('userAccessFilter');
+    Route::get('/role/showRoleAccess',[RoleController::class,'showRoleAccess'])->middleware('userAccessFilter:index');
+    Route::post('/role/ManageAccessRole',[RoleController::class,'ManageAccessRole'])->middleware('userAccessFilter:index');
     Route::resource('role', RoleController::class)->middleware('userAccessFilter:index');
 });
 

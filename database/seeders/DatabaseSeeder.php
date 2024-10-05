@@ -67,14 +67,6 @@ class DatabaseSeeder extends Seeder
         ///MODULE 
         $ModuleData=[
             [
-                'ModuleName'=>'Home',
-                'ModuleGroup'=>null,
-                'ModuleSubGroup'=>null,
-                'ModuleAction'=>'index',
-                'ModuleController'=>'home',
-                'ModuleOrder'=>1,
-                'ModuleIcon'=>'fas fa-fw fa-tachometer-alt'
-            ],[
                 'ModuleName'=>'Roles',
                 'ModuleGroup'=>'Administrator',
                 'ModuleSubGroup'=>null,
@@ -92,11 +84,11 @@ class DatabaseSeeder extends Seeder
                 'ModuleIcon'=>'fas fa-users'
             ]
             ,[
-                'ModuleName'=>'Module Role Access',
+                'ModuleName'=>'Modules',
                 'ModuleGroup'=>'Administrator',
                 'ModuleSubGroup'=>null,
                 'ModuleAction'=>null,
-                'ModuleController'=>'ModuleWithRole',
+                'ModuleController'=>'Modules',
                 'ModuleOrder'=>4,
                 'ModuleIcon'=>'fas fa-cog'
             ],[
@@ -139,9 +131,6 @@ class DatabaseSeeder extends Seeder
             ], [
                 'module_id'=>5,
                 'role_id'=>2
-            ], [
-                'module_id'=>6,
-                'role_id'=>2
             ]
         ];
         foreach($ADMIN as $key=>$val){
@@ -154,7 +143,7 @@ class DatabaseSeeder extends Seeder
                 'module_id'=>1,
                 'role_id'=>1
             ],[
-                'module_id'=>6,
+                'module_id'=>5,
                 'role_id'=>1
             ]
         ];
