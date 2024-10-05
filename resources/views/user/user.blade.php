@@ -1,13 +1,13 @@
 @extends('layout.app')
 
 @section('title')
-Role Master
+User Master
 @endsection
 
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800">Master Roles</h1>
+	<h1 class="h3 mb-0 text-gray-800">Master User</h1>
 </div>
 
 <div class="row">
@@ -15,7 +15,7 @@ Role Master
      <!-- DataTales Example -->
      <div class="card shadow mb-4">
       <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
       </div>
       <div class="card-body">
           <div class="table-responsive">
@@ -24,8 +24,9 @@ Role Master
                       <tr>
                           <th>id</th>
                           <th>name</th>
-                          <th>created_at</th>
-                          <th>updated_at</th>
+                          <th>email</th>
+                          <th>role_name</th>
+                          <th>disable</th>
                           <th>action</th>
                       </tr>
                   </thead>
@@ -47,6 +48,24 @@ Role Master
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="name">
     </div>
+    <div class="form-group">
+        <label for="email">email</label>
+        <input type="email" class="form-control" id="email" name="email">
+    </div>
+    <div class="form-group">
+        <label for="role_id">role</label>
+        <select class="form-control" id="role_id" name="role_id">
+            <option selected value=''>Choose role here</option>
+         </select>
+    </div>
+    <div class="form-group" id='formGroupPassword'>
+        <label for="password">Password</label>
+        <input type="text" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+    </div>
+    <div class="form-group" id='formGroupPasswordRe'>
+        <label for="password_confirmation">Repeat Password</label>
+        <input type="text" class="form-control form-control-user" id="password_confirmation" name="password_confirmation" placeholder="Repeat Password">
+    </div>
     <button type="submit" class="btn btn-outline-primary mt-3" id="form-data-submit-btn">
         Save data
     </button>
@@ -56,5 +75,5 @@ Role Master
 {{-- <script type="text/javascript">
   
 </script> --}}
-<script src="{{asset('js/page/role.js')}}"></script>
+<script src="{{asset('js/page/user.js')}}"></script>
 @endsection

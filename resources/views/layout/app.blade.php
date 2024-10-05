@@ -28,6 +28,7 @@
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href='{{ asset('vendor/datatables/buttons.bootstrap.min.css') }}' rel='stylesheet' type='text/css' />
     <link href="{{ asset('css/loader.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert2.min.css') }}">
 </head>
 

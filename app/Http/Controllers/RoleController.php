@@ -7,7 +7,6 @@ use App\Models\ModuleWithRole;
 use App\Models\Role;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
