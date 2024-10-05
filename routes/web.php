@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Mail\SendEmail;
@@ -45,6 +46,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/user/getRoles',[UserController::class,'getRoles'])->middleware('userAccessFilter:index');
     Route::post('/user/disable',[UserController::class,'disable'])->middleware('userAccessFilter:index');
     Route::resource('user', UserController::class)->middleware('userAccessFilter:index');
+
+    Route::get('/module/index',[ModuleController::class,'index'])->middleware('userAccessFilter');
+    Route::resource('module', ModuleController::class)->middleware('userAccessFilter:index');
 });
 
 // Route::group(['middleware'=>'XSS', function() {

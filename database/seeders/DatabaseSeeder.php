@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
                 'ModuleName'=>'Modules',
                 'ModuleGroup'=>'Administrator',
                 'ModuleSubGroup'=>null,
-                'ModuleAction'=>null,
+                'ModuleAction'=>'index',
                 'ModuleController'=>'module',
                 'ModuleOrder'=>4,
                 'ModuleIcon'=>'fas fa-cog'
